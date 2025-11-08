@@ -1,61 +1,120 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Invitación a mi grado</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 40px;
-      background: #f8f9fa;
-    }
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      max-width: 500px;
-      margin: auto;
-    }
-    h1 {
-      color: #2c3e50;
-    }
-    p {
-      font-size: 18px;
-      color: #4a4a4a;
-    }
-    .date {
-      font-size: 20px;
-      font-weight: bold;
-      margin-top: 20px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitación de Grado</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eaf2ff;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Sobre */
+.envelope {
+  width: 320px;
+  height: 200px;
+  background: #1e3a8a;
+  position: relative;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transition: transform .4s ease-in-out;
+}
+
+.envelope:hover {
+  transform: scale(1.05);
+}
+
+.envelope:before {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 200px;
+  background: #1d4ed8;
+  clip-path: polygon(0 0, 100% 0, 50% 55%);
+}
+
+/* Mensaje oculto */
+#card {
+  width: 300px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  display: none;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  animation: fade .5s ease;
+}
+
+@keyframes fade {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+h2 {
+  color: #1e40af;
+}
+
+button {
+  background: #1e3a8a;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+/* Sombrero */
+.cap {
+  font-size: 3rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: white;
+}
+</style>
 </head>
 <body>
-  <div id="welcome" style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;background:#e3f2fd;text-align:center;padding:20px;">
-    <img src="https://cdn-icons-png.flaticon.com/512/201/201614.png" alt="Sombrero de grado" style="width:120px;margin-bottom:20px;" />
-    <h2 style="color:#0d47a1;">Andrés <3,</h2>
-    <p style="color:#1a237e;font-size:18px;max-width:400px;">Tengo algo muy especial que compartir contigo. Haz clic en el botón para abrir esta carta de invitación.</p>
-    <button onclick="showInvite()" style="margin-top:20px;font-size:18px;padding:12px 24px;background:#1565c0;color:white;border:none;border-radius:8px;cursor:pointer;">Abrir invitación</button>
-  </div>
 
-  <div class="card" id="invite" style="display:none;">
-    <h1>🎓 Invitación de Grado 🎓</h1>
-    <p>Con gran emoción te invito a celebrar conmigo este logro tan importante, Andrés.</p>
-    <p>Tu presencia hará este momento aún más especial.</p>
-    <p class="date">📅 Fecha: 15 de diciembre de 2025</p>
-    <p class="date">🕒 Hora: yo ñe aviso</p>
-    <p class="date">📍 Lugar: La universidad</p>
-    <p>¡Te espero! 💛✨</p>
-  </div>
+<div class="envelope" onclick="openInvite()">
+  <div class="cap">🎓</div>
+</div>
 
-  <script>
-    function showInvite(){
-      document.getElementById('welcome').style.display = 'none';
-      document.getElementById('invite').style.display = 'block';
-    }
-  </script>
+<div id="card">
+  <h2>🎓 Invitación Especial 🎓</h2>
+  <p>Hola Andrés 🤍</p>
+  <p>Me graduo y quiero que seas parte de este momento tan importante para mí.</p>
+  <p><b>📅 Fecha:</b> 15 de diciembre</p>
+  <p><b>📍 Lugar:</b> Universidad pero solo son dos invitaciones entonces vamos a comer los cuatro (mi mamá, mi papá, ushed y yo porque Tatiana trabaja) </p>
+  <p><b>🕒 Hora:</b> En la mañana, lo mas probable entonces vamos a almorzar</p>
+  <p>Será un honor que me acompañes 💫</p>
+  <button onclick="closeInvite()">Cerrar</button>
+</div>
+
+<script>
+function openInvite(){
+  document.querySelector('.envelope').style.display = "none";
+  document.getElementById('card').style.display = "block";
+}
+
+function closeInvite(){
+  document.getElementById('card').style.display = "none";
+  document.querySelector('.envelope').style.display = "block";
+}
+</script>
+
 </body>
 </html>
